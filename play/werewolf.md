@@ -15,7 +15,7 @@ Start one managed CLI agent as GM. Allow four child sessions within your account
 ## Prompt
 
 ```text
-Use the installed ORRERY /delegate skill to run one English-language werewolf game. You are the GM; start exactly four real player children, no further children. Use authenticated available CLIs, Sonnet for Claude children, never Haiku, and no --worktree for Codex. Keep the current directory and existing ORRERY project identity. No project file edits, purchases, external posts, or native subagent substitutes.
+Use the installed ORRERY /delegate skill to run one English-language werewolf game. You are the GM; use /delegate to start exactly four real player children, no further children. Use ORRERY Mail (send_message) for every ready message, role assignment, night action, daytime statement, and ballot. Do not use Claude Code's built-in Agent or SendMessage tools. Include these same tool requirements in every player's embedded task. Use authenticated available CLIs, Sonnet for Claude children, never Haiku, and no --worktree for Codex. Keep the current directory and existing ORRERY project identity. No project file edits, purchases, external posts, or native subagent substitutes.
 
 Embed the full player task. Each player's first tool action must send you ORRERY Mail with subject "werewolf ready" and body "ready", before waiting for instructions through the documented Mail mechanism. Wait for all four ready messages. If a launch or Mail failure prevents this, report it and stop; never invent players or votes.
 

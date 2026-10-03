@@ -15,9 +15,9 @@ ORRERY and at least one signed-in CLI must work. Start one managed agent in an e
 ## Prompt
 
 ```text
-/delegate Start exactly one child and play Japanese shiritori with it over real ORRERY Mail for exactly three round trips.
+/delegate Start exactly one child agent, then play Japanese shiritori with it over ORRERY Mail (send_message), three turns each: exactly three round trips.
 
-Read and follow the installed ORRERY delegate skill. Use an available authenticated CLI: prefer a child from the other provider if available; otherwise use this provider. For a Claude child select Sonnet, never Haiku. Do not use --worktree for a Codex child. Keep the current working directory and existing ORRERY project identity. No native subagent tool, simulated dialogue, recursive delegation, game-output file edits, purchases, or external posting. Temporary task files required by the delegate skill are allowed.
+Read and follow the installed ORRERY delegate skill. Use /delegate to create the child and ORRERY Mail (send_message) for every ready message and game move. Do not use Claude Code's built-in Agent or SendMessage tools. Include these same tool requirements in the child's embedded task. Use an available authenticated CLI: prefer a child from the other provider if available; otherwise use this provider. For a Claude child select Sonnet, never Haiku. Do not use --worktree for a Codex child. Keep the current working directory and existing ORRERY project identity. No native subagent tool, simulated dialogue, recursive delegation, game-output file edits, purchases, or external posting. Temporary task files required by the delegate skill are allowed.
 
 Put the complete rules in the child's embedded task. Its first action must send me ORRERY Mail with subject "shiritori ready" and body "ready", then wait through the documented Mail mechanism. Use the server-assigned names, not invented identities. If launch or Mail fails, report the exact failure and stop.
 
