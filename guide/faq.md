@@ -40,7 +40,15 @@ Run the setup and Linux CLIs inside WSL2 Ubuntu. A Windows executable found thro
 
 A [user report in issue #189](https://github.com/gyroid-eth/orrery-telemetry/issues/189) describes WSL2 exhausting memory and swap while many agents were running. No OOM-killer event was logged; the processes remained alive but unresponsive. A long transcription job was the suspected trigger, not proven by per-process memory traces. This is a reported incident, not a prediction that every WSL installation behaves this way.
 
-For prevention, EXIT children after their results are accepted: the report measured roughly 300 MB for an idle agent. Split long inputs into smaller jobs. Run heavy work with a per-job memory limit so a failed job can be contained; the issue reports a 300 MB cgroup test that killed only the limited job with exit 137. Its current published text does not include the actual “countermeasure 2” command, so an exact command is unverified here. Review WSL2's `memory` and `swap` settings in `.wslconfig` for your host; larger limits do not replace workload control. See [Microsoft's WSL configuration reference](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings).
+For prevention, EXIT children after their results are accepted: the report measured roughly 300 MB for an idle agent. Split long inputs into smaller jobs. Review WSL2's `memory` and `swap` settings in `.wslconfig` for your host; larger limits do not replace workload control. See [Microsoft's WSL configuration reference](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings).
+
+A general per-job limit example, separate from the issue's reported experiment, is:
+
+```bash
+systemd-run --user --scope -p MemoryMax=2G -p MemorySwapMax=512M python3 job.py
+```
+
+Replace `python3 job.py` with your existing heavy command and choose limits appropriate to your host/workload. This requires systemd enabled in WSL, a working user manager, and cgroup v2 memory control available to that manager; it is not a command for Windows PowerShell. `--scope` creates a transient scope; `-p` sets unit properties. `MemoryMax` imposes a hard memory limit, with OOM action inside the unit when necessary; `MemorySwapMax` caps its swap use. If the manager or limits cannot be applied, stop and diagnose rather than rerunning the job without limits. The example is **not yet tested on WSL** and is not claimed to be the issue's exact command. Sources: [systemd-run official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd-run.xml), [systemd resource-control official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd.resource-control.xml), [Microsoft: systemd in WSL](https://learn.microsoft.com/en-us/windows/wsl/systemd).
 
 If WSL is unresponsive, Windows itself usually does not need a reboot. In **Windows PowerShell**, run:
 
