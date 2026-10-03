@@ -47,6 +47,19 @@ Global instructions also contribute. Current Claude can automatically load AGENT
 
 This requires supported versions, starting with 2.1.277. Codex-compatible AGENTS does not imply identical loading behavior. [Claude AGENTS support](https://code.claude.com/docs/en/memory#agentsmd)
 
+### Check what actually loaded
+
+In Claude's current session, run `/context` and inspect **Memory files** (`/context all` expands a collapsed breakdown). Expect the user/ancestor/project files for your launch directory; a descendant appears after its files are read. A missing entry is not loaded. Use `/memory` to inspect or edit locations, then recheck `/context`. [Claude memory diagnostics](https://code.claude.com/docs/en/memory#troubleshoot-memory-issues), [Context command](https://code.claude.com/docs/en/commands).
+
+For the directory example above, use a disposable Git repository with non-empty root and services `AGENTS.md` files and an api `AGENTS.override.md`. Give them distinct harmless instructions. From its root, run:
+
+```bash
+codex --ask-for-approval never "Summarize the current instructions."
+codex --cd services/api --ask-for-approval never "Show which instruction files are active."
+```
+
+Expect any available global guidance plus root guidance in the first session; the second adds services guidance and the api override, instead of api's `AGENTS.md`. Restart after changes. For an audit beyond the model's summary, launch with `codex -c log_dir=./.codex-log` and inspect `./.codex-log/codex-tui.log` for instruction-loading evidence. Use synthetic inputs for plaintext logs. [Codex: Verify your setup](https://learn.chatgpt.com/docs/agent-configuration/agents-md#verify-your-setup).
+
 ## 2 — Configure permissions and execution boundaries
 
 ### Claude Code
