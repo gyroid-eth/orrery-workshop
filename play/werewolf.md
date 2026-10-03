@@ -10,6 +10,8 @@ A game master coordinates four separate players. Players exchange private role a
 
 ## Before you start
 
+First, follow the cockpit’s **Your first flight** guide to learn the basic controls ([workshop entry](../README.md#your-first-flight-then-shiritori)); then use the setup below for this exercise.
+
 Start one managed CLI agent as GM. Allow four child sessions within your account allowance. Use Sonnet for Claude children, never Haiku; no Codex `--worktree`. Mail privacy here is a game convention: the operator can inspect history. Projecting all Mail reveals roles, so show the GM's daytime summary if you want suspense.
 
 ## Prompt

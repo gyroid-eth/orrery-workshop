@@ -10,6 +10,8 @@ Two children review the same input independently, then compare findings by Mail.
 
 ## Before you start
 
+First, follow the cockpit’s **Your first flight** guide to learn the basic controls ([workshop entry](../README.md#your-first-flight-then-shiritori)); then use the setup below for this exercise.
+
 Start one managed CLI agent in an empty disposable workshop folder. It will write one new input file and start two read-only reviewers. Both providers are useful but optional; label the actual pairing. No private document is needed.
 
 ## Prompt
