@@ -12,7 +12,7 @@ One coordinator starts one real child and exchanges ORRERY Mail. Three round tri
 
 First, follow the cockpit’s **Your first flight** guide to learn the basic controls ([workshop entry](../README.md#your-first-flight-then-shiritori)); then use the setup below for this exercise.
 
-ORRERY and at least one signed-in CLI must work. Start one managed agent in an empty workshop folder. This game writes no game-output files; delegation may create its required temporary task files. Choose Sonnet for a Claude child; do not use Haiku. Do not add `--worktree` to a Codex child. See the [installed delegate skill](https://github.com/gyroid-eth/orrery-telemetry/blob/master/skills/delegate/SKILL.md).
+ORRERY and at least one signed-in CLI must work. Reuse the managed agent you started in an empty workshop folder during **Your first flight**; if it is no longer available, start one managed agent in an empty workshop folder. This game writes no game-output files; delegation may create its required temporary task files. Choose Sonnet for a Claude child; do not use Haiku. Do not add `--worktree` to a Codex child. See the [installed delegate skill](https://github.com/gyroid-eth/orrery-telemetry/blob/master/skills/delegate/SKILL.md).
 
 ## Prompt
 
