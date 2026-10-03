@@ -42,18 +42,18 @@ A [user report in issue #189](https://github.com/gyroid-eth/orrery-telemetry/iss
 
 For prevention, EXIT children after their results are accepted: the report measured roughly 300 MB for an idle agent. Split long inputs into smaller jobs. Review WSL2's `memory` and `swap` settings in `.wslconfig` for your host; larger limits do not replace workload control. See [Microsoft's WSL configuration reference](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings).
 
-A general per-job limit example, separate from the issue's reported experiment, is:
+The [reporter's follow-up comment](https://github.com/gyroid-eth/orrery-telemetry/issues/189#issuecomment-5970463980) supplies this operational form, with a 4 GiB memory cap and zero swap allowance. Here its command placeholder is replaced with `python3 job.py`. The reported reproduction used a separate 300 MiB cap for feature extraction: only the limited process was killed, with exit 137. These are the reporter's observations; the workshop example remains untested here.
 
 ```bash
-systemd-run --user --scope -p MemoryMax=2G -p MemorySwapMax=512M python3 job.py
+systemd-run --user --scope -p MemoryMax=4G -p MemorySwapMax=0 python3 job.py
 ```
 
-Replace `python3 job.py` with your existing heavy command and choose limits appropriate to your host/workload. This requires systemd enabled in WSL, a working user manager, and cgroup v2 memory control available to that manager; it is not a command for Windows PowerShell. `--scope` creates a transient scope; `-p` sets unit properties. `MemoryMax` imposes a hard memory limit, with OOM action inside the unit when necessary; `MemorySwapMax` caps its swap use. If the manager or limits cannot be applied, stop and diagnose rather than rerunning the job without limits. The example is **not yet tested on WSL** and is not claimed to be the issue's exact command. Sources: [systemd-run official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd-run.xml), [systemd resource-control official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd.resource-control.xml), [Microsoft: systemd in WSL](https://learn.microsoft.com/en-us/windows/wsl/systemd).
+Replace `python3 job.py` with your existing heavy command and choose limits appropriate to your host/workload. This requires systemd enabled in WSL, a working user manager, and cgroup v2 memory control available to that manager; it is not a command for Windows PowerShell. `--scope` creates a transient scope; `-p` sets unit properties. `MemoryMax` imposes a hard memory limit, with OOM action inside the unit when necessary; `MemorySwapMax` caps its swap use. If the manager or limits cannot be applied, stop and diagnose rather than rerunning the job without limits. The adapted workshop example is **not yet tested on WSL**. Sources: [systemd-run official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd-run.xml), [systemd resource-control official man-page source](https://github.com/systemd/systemd/blob/main/man/systemd.resource-control.xml), [Microsoft: systemd in WSL](https://learn.microsoft.com/en-us/windows/wsl/systemd).
 
 Before starting a heavy job, check the limits with a harmless named scope. In one **Ubuntu terminal**, run the following (replace the unit name consistently in every command if this one already exists):
 
 ```bash
-systemd-run --user --scope --unit=workshop-memory-check -p MemoryMax=2G -p MemorySwapMax=512M sleep 90
+systemd-run --user --scope --unit=workshop-memory-check -p MemoryMax=4G -p MemorySwapMax=0 sleep 90
 ```
 
 While that sleep is still running, use a second Ubuntu terminal:
@@ -69,7 +69,7 @@ else
 fi
 ```
 
-Expect `ActiveState=active`, `MemoryMax=2147483648`, `MemorySwapMax=536870912`, and a non-empty `ControlGroup`. The two kernel files should report `2147483648` and `536870912` respectively, not `max`. If the scope expired, repeat with an unused name and check while it is active. If properties or files cannot be read, or values disagree, **do not start the heavy job**. Diagnose the manager/controller first. The scope ends when sleep finishes. This verifies configured limits; OOM behavior remains untested, and parent cgroup limits can be stricter. This check is also **not yet tested on WSL**. Sources: [systemctl official man-page source](https://github.com/systemd/systemd/blob/main/man/systemctl.xml), [Linux kernel: cgroup v2 memory files](https://docs.kernel.org/admin-guide/cgroup-v2.html#memory-interface-files), and the systemd sources above.
+Expect `ActiveState=active`, `MemoryMax=4294967296`, `MemorySwapMax=0`, and a non-empty `ControlGroup`. The two kernel files should report `4294967296` and `0` respectively, not `max`. If the scope expired, repeat with an unused name and check while it is active. If properties or files cannot be read, or values disagree, **do not start the heavy job**. Diagnose the manager/controller first. The scope ends when sleep finishes. This verifies configured limits; OOM behavior remains untested, and parent cgroup limits can be stricter. This check is also **not yet tested on WSL**. Sources: [systemctl official man-page source](https://github.com/systemd/systemd/blob/main/man/systemctl.xml), [Linux kernel: cgroup v2 memory files](https://docs.kernel.org/admin-guide/cgroup-v2.html#memory-interface-files), and the systemd sources above.
 
 If WSL is unresponsive, Windows itself usually does not need a reboot. In **Windows PowerShell**, run:
 
