@@ -10,6 +10,8 @@ A Claude writer drafts a note; a Codex checker compares it with the paper's actu
 
 ## Before you start
 
+First, follow the cockpit’s **Your first flight** guide to learn the basic controls ([workshop entry](../README.md#your-first-flight-then-shiritori)); then use the setup below for this exercise.
+
 Install ORRERY, sign in to both Claude Code and Codex inside your execution environment, then install the [research set](https://github.com/gyroid-eth/orrery/blob/master/docs/en/research-set.md):
 
 ```bash

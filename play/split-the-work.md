@@ -10,6 +10,8 @@ Separate file owners work in parallel, exchange pointers by Mail, check each oth
 
 ## Before you start
 
+First, follow the cockpit’s **Your first flight** guide to learn the basic controls ([workshop entry](../README.md#your-first-flight-then-shiritori)); then use the setup below for this exercise.
+
 Start one managed agent in an empty disposable folder with permission to create a new subfolder. Three children will own three different files. This is a synthetic writing task with no downloads or external publication.
 
 ## Prompt

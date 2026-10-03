@@ -2,14 +2,14 @@
 
 Coding agents, visible teamwork, and small experiments for the Osaka University System Science Seminar, 7 October 2026. The session is in English, lasts 60 minutes, and supports up to 136 participants. [日本語](README.ja.md)
 
-Start with **shiritori** to check your installation. Then try a paper reading note or choose another exercise. These are workshop drafts: every exercise prompt is **Not yet tested on a fresh install**. Times below are estimates, not measured results.
+Install, follow **Your first flight** in the cockpit, then run **shiritori** to check real delegation and Mail. Afterwards, try a paper reading note or choose another exercise. These are workshop drafts: every exercise prompt is **Not yet tested on a fresh install**. Times below are estimates, not measured results.
 
 ## The session
 
 | Minutes | Activity |
 | --- | --- |
 | 0–15 | What a coding agent is; instructions, permissions, and ORRERY |
-| 15–25 | Install, sign in, and open the cockpit |
+| 15–25 | Install, sign in, and follow Your first flight |
 | 25–30 | Everyone runs [shiritori](play/shiritori.md) |
 | 30–45 | [One paper → a checked note](play/paper-to-note.md) |
 | 45–60 | Choose an exercise, compare results, and ask questions |
@@ -24,7 +24,13 @@ curl -fsSL https://raw.githubusercontent.com/gyroid-eth/orrery/master/scripts/ge
 
 This downloads and runs the upstream installer. It checks the environment, presents its plan for confirmation, installs ORRERY and ORRERY Telemetry, checks Mail, and opens the cockpit. Read its output and resolve any failed checks before continuing. CLI sign-in and account access are separate from installing ORRERY. The [Telemetry install guide](https://github.com/gyroid-eth/orrery-telemetry/blob/master/docs/install.en.md) has additional prerequisites and diagnostics.
 
-Choose **NEW AGENT** in the cockpit, select an available provider/model, and use an empty disposable folder as its primary working directory. Paste the shiritori prompt into that agent's terminal/composer. Use the demo vault as the working directory for the paper exercise instead.
+## Your first flight, then shiritori
+
+Follow **Your first flight**, the seven-item guide that appears on the right on your first visit. For its first step, use **NEW AGENT**, an available provider/model, and an empty disposable workshop folder. Choose that agent and send a short greeting below its terminal. Continue with the instructions on screen; the Mail-reading item has a `Mark as read` button. Reopen the guide from **Settings → Getting started → Your first flight** if it is closed.
+
+Next, paste the [shiritori prompt](play/shiritori.md) into that same agent's terminal/composer. A completed first-flight checklist introduces the controls; the three real Mail round trips in shiritori check delegation and communication. Use the research set's demo vault as the working directory for the paper exercise instead.
+
+During free exploration, open **Settings → Getting started → Show help map** to look around the annotated controls, then **Full tour** for sixteen steps covering a child game, pane layout, and Telemetry EXIT / RESUME and replay. Full tour includes the same shiritori prompt; it observes a fresh game, so plan another three round trips if you take the tour after the classroom game. You can leave the tour for later. Follow the [upstream quick start](https://github.com/gyroid-eth/orrery/blob/master/README.en.md#quick-start) for the current entry points.
 
 No exercise requires buying API credit or publishing to an external service. Agents still consume your existing CLI account allowance; running more children consumes more of it. Use public or synthetic inputs. File content may be sent to the selected model provider.
 
