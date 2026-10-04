@@ -18,6 +18,8 @@ install → **Your first flight** → [しりとり](play/shiritori.md) の順�
 
 Mac はターミナル、Windows は WSL2 の Ubuntu 内で実行します。PowerShell に貼らないでください。[上流の手順](https://github.com/gyroid-eth/orrery/blob/master/docs/en/install.md)で前提条件を確認し、Claude Code または Codex の CLI を少なくとも一方、ログイン済みにします。論文ノートを別会社のモデルで確かめるには両方が必要です。WSL では Ubuntu 内の Linux CLI が必要です。
 
+Claude Code を使う場合は、`claude` を起動し、text style・ログイン・Security notes・フォルダの信頼まで進めて、通常の入力欄が出たら `/exit`。fullscreen renderer を試すかなど、ほかに一度だけ出る質問にも自分で答えておく。初回設定の途中で閉じると、NEW AGENT の Claude は初回設定の画面で止まり、起動しません。
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/gyroid-eth/orrery/master/scripts/get.sh | bash
 ```
