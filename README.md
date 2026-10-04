@@ -18,7 +18,7 @@ Install, follow **Your first flight** in the cockpit, then run **shiritori** to 
 
 Use a terminal on macOS. On Windows, use **Ubuntu inside WSL2**, rather than PowerShell. Follow the [upstream installation guide](https://github.com/gyroid-eth/orrery/blob/master/docs/en/install.md) for prerequisites and supported environments. Have at least one supported Claude Code or Codex CLI installed and signed in; having both enables the paper exercise's cross-company check. WSL needs Linux CLI installations inside Ubuntu.
 
-Start `claude` and go through text style, login, Security notes and trusting the folder until the normal input prompt appears, answer any other one-time question it asks, such as trying the fullscreen renderer, then `/exit`. If the setup was left halfway, a Claude agent from NEW AGENT stops on the setup screen and does not start.
+If you use Claude Code, start `claude` and go through text style, login, Security notes and trusting the folder until the normal input prompt appears, answer any other one-time question it asks, such as trying the fullscreen renderer, then `/exit`. If the setup was left halfway, a Claude agent from NEW AGENT stops on the setup screen and does not start.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/gyroid-eth/orrery/master/scripts/get.sh | bash
